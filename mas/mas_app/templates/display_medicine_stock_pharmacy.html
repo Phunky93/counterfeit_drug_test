@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="author" content="templatemo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <title>Medicine Stock Pharmacy</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-snapx-photography.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+    <!-- Libraries Stylesheet -->
+   <!--  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet"> -->
+    <script src="{% static 'js_1/jquery2.0.3.min.js' %}"></script>
+ <!--    <script src="{% static 'js_1/raphael-min.js' %}"></script>
+    <script src="{% static 'js_1/morris.js' %}"></script> -->
+
+    <!-- Customized Bootstrap Stylesheet -->
+   <!--  <link href="{% static 'css/style.css' %}" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="{% static 'datatable/jquery.dataTables.min.css' %}">
+    <script type="text/javascript" src="{% static 'datatable/jquery.dataTables.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'datatable/bootstable.min.js' %}"></script>
+
+    <script type="text/javascript">
+    
+        $(document).ready(function(){
+
+            $('#table').DataTable();
+        })
+    </script>
+
+    <style>
+        #table{background:lightblue ;color: black}
+        .a{background: lightblue;padding-left: 400px;}
+        td:hover{background-color: lightpink;}
+        tr:hover{background-color:lightskyblue;}
+
+    </style>
+
+  </head>
+
+<body>
+
+
+  <!-- ***** Header Area Start ***** -->
+   {% include 'pharmacy_header.html' %}
+  <!-- ***** Header Area End ***** -->
+  <h2 style="text-align: center; margin-top:150px;"><u>Medicine Stock</u></h2><br><br>
+
+        <div class='table-condensed container'>
+          <table class="table table-bordered b-t b-light" id="table">
+            <thead>
+              <tr>
+                <th>Medicine Name</th>
+                <th>Ingredients</th>
+                <th>Exp_Date</th>
+                <th>Total Quantity</th>
+                <th>Available Quantity</th>
+             </tr>
+            </thead>
+            <tbody>
+          
+                {% for i in dist %}
+
+                  <tr>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        
+                        <td data-search="{{i.med_name}}" data-filer="{{i.med_name}}"><input type="text" name="m_id"  value="{{i.m_id}}" hidden>{{i.med_name}}<input type="text" name="med_name" id="med_name" value="{{i.med_name}}" hidden></td>
+
+                        <td >{{i.ingredients}}<input type="text" name="ingredients" value="{{i.ingredients}}" hidden></td>
+
+                        <td >{{i.exp_date}}<input type="text" name="exp_date" value="{{i.exp_date}}" hidden></td>
+
+                        <td >{{i.quantity}}<input type="text" name="quantity" value="{{i.quantity}}" hidden></td>
+
+                        <td >{{i.avail_quantity}}<input type="text" name="avail_quantity" value="{{i.avail_quantity}}" hidden></td>
+
+                    </form>
+                  </tr>
+
+                {% endfor %}
+         
+             
+              
+            </tbody>
+          </table>
+        </div>
+        <div style="padding-top: 180px;"></div>
+  <!-- ***** Main Banner Area End ***** -->
+  
+  {% include 'admin_footer.html' %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+<!--   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script> -->
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+ <!--  <script src="{% static 'assets/js/isotope.min.js' %}"></script> -->
+<!--   <script src="{% static 'assets/js/owl-carousel.js' %}"></script> -->
+<!--   <script src="{% static 'assets/js/wow.js' %}"></script> -->
+ <!--  <script src="{% static 'assets/js/tabs.js' %}"></script> -->
+<!--   <script src="{% static 'assets/js/popup.js' %}"></script> -->
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+
+<!--   <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script> -->
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'mail/contact.js' %}"></script>
+    <script src="{% static 'js_1/bootstrap.js' %}"></script>
+    <script src="{% static 'js_1/jquery.dcjqaccordion.2.7.js' %}"></script>
+    <script src="{% static 'js_1/scripts.js' %}"></script>
+    <script src="{% static 'js_1/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'js_1/jquery.nicescroll.js' %}"></script>
+    <script src="{% static 'js_1/jquery.scrollTo.js' %}"></script>
+    
+
+  </body>
+</html>
